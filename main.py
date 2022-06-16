@@ -1,6 +1,6 @@
+import time
 import tweepy
 from acesso import token
-import time
 auth = tweepy.OAuthHandler(token[0], token[1])
 auth.set_access_token(token[3], token[4])
 api = tweepy.API(auth)
@@ -16,13 +16,14 @@ while True:
             print('Postagem: ', tweet.text)
             try:
                 tweet.favorite()
-            except:
+            except Exception as e:
+                print(e)
                 print('O Bot já favoritou essa postagem.')
             try:
                 tweet.retweet()
-            except:
+            except Exception as e:
+                print(e)
                 print('O bot já retweetou essa postagem.')
-                pass
             print(' ')
     print('Pausando pesquisa por 5 minutos...')
     time.sleep(300)
